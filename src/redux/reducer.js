@@ -1,6 +1,4 @@
 import { statusFilters } from './constants';
-// Імпортуємо функцію композиції редюсерів
-import { combineReducers } from "redux";
 
 const tasksInitialState = [
   { id: 0, text: 'Learn HTML and CSS', completed: true },
@@ -12,7 +10,7 @@ const tasksInitialState = [
 
 // Відповідає лише за оновлення властивості tasks
 // Тепер значенням параметра state буде масив завдань
-const tasksReducer = (state = tasksInitialState, action) => {
+export const tasksReducer = (state = tasksInitialState, action) => {
   switch (action.type) {
     case 'tasks/addTask':
       return [...state, action.payload];
@@ -36,7 +34,7 @@ const filtersInitialState = {
 
 // Відповідає лише за оновлення властивості filters
 // Тепер значенням параметра state буде об'єкт фільтрів
-const filtersReducer = (state = filtersInitialState, action) => {
+export const filtersReducer = (state = filtersInitialState, action) => {
   switch (action.type) {
     case 'filters/setStatusFilter':
       return {
@@ -47,9 +45,3 @@ const filtersReducer = (state = filtersInitialState, action) => {
       return state;
   }
 };
-
-// Код редюсерів tasksReducer та filtersReducer
-export const rootReducer = combineReducers({
-    tasks: tasksReducer,
-    filters: filtersReducer,
-  });
